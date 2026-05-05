@@ -1,17 +1,17 @@
-version: '3.8'
+version: '3'
 
 services:
   web:
     build: .
-    command: gunicorn project.wsgi:application --bind 0.0.0.0:8000
+    container_name: django_app
     volumes:
-      - .:/app
       - static_volume:/static
     expose:
       - 8000
 
   nginx:
     image: nginx:latest
+    container_name: nginx_server
     ports:
       - "80:80"
     volumes:
